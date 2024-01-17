@@ -1,0 +1,331 @@
+{% extends "layout.html" %}
+
+{% block content %}
+    <h1>Información Personal</h1>
+    {% for paciente in pacientes %}
+
+<form method="post" action="/actualizar" enctype="multipart/form-data">
+    <fieldset>
+        <legend>Información Personal</legend>
+        <div class="form-group">
+            <label for="txtDocumento">Documento:</label>
+            <input type="text" name="txtDocumento" id="txtDocumento" value="{{ paciente[0] }}" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="tipo_documento">Tipo de Documento:</label>
+            <select name="tipo_documento" id="tipo_documento" class="form-control">
+                <option value="cedula" {% if paciente[1] == "C.C" %} selected {% endif %}>C.C</option>
+                <option value="tarjeta_identidad" {% if paciente[1] == "T.I" %} selected {% endif %}>T.I</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="Nombre">Nombre:</label>
+            <input type="text" name="Nombre" id="Nombre" value="{{ paciente[2] }}" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="Edad">Edad:</label>
+            <input type="text" name="Edad" id="Edad" value="{{ paciente[3] }}" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="genero">Género:</label>
+            <select name="genero" id="genero" class="form-control">
+                <option value="Masculino" {% if paciente[4] == "Masculino" %} selected {% endif %}>Masculino</option>
+                <option value="Femenino" {% if paciente[4] == "Femenino" %} selected {% endif %}>Femenino</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="text" name="email" id="email" value="{{ paciente[5] }}" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for ="direccion">Dirección:</label>
+            <input type="text" name="direccion" id="direccion" value="{{ paciente[6] }}" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="telefono">Teléfono:</label>
+            <input type="text" name="telefono" id="telefono" value="{{ paciente[7] }}" class="form-control">
+        </div>
+    </fieldset>
+
+    <fieldset>
+        <legend>Información Adicional</legend>
+        <div class="form-group">
+            <label for="eps">EPS:</label>
+            <input type="text" name="eps" id="eps" value="{{ paciente[8] }}" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="cargo">Ocupación:</label>
+            <input type="text" name="cargo" id="cargo" value="{{ paciente[9] }}" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="acompanante">Acompañante:</label>
+            <input type="text" name="acompanante" id="acompanante" value="{{ paciente[10] }}" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="parentesco">Parentesco:</label>
+            <input type="text" name="parentesco" id="parentesco" value="{{ paciente[11] }}" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="telefono_acompanante">Teléfono del Acompañante:</label>
+            <input type="text" name="telefono_acompanante" id="telefono_acompanante" value="{{ paciente[12] }}" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="motivo_consulta">Motivo de la Consulta:</label>
+            <textarea name="motivo_consulta" rows="5" cols="40" id="motivo_consulta" class="form-control" value="{{ paciente[13] }}">{{ paciente[13] }}</textarea>
+        </div>
+        <div class="form-group">
+            <label for="ultima_revision">Última Revisión:</label>
+            <input type="date" name="ultima_revision" id="ultima_revision" value="{{ paciente[14] }}" class="form-control">
+        </div>
+    </fieldset>
+    <div class="form-step" data-step="2">
+        <caption>Antecedentes Familirares</caption>
+        <tr>
+            <th scope="col">Antecedentes En:</th>
+        </tr>
+    </div>
+    <div class="form-step" data-step="2">
+        <th>DIABETES</th>
+        <select for="dia" name="dia" id="dia">
+            <option value="no_refiere" {% if paciente[17] == "no_refiere" %} selected {% endif %}>NO REFIERE</option>
+            <option value="refiere" {% if paciente[17] == "refiere" %} selected {% endif %}>REFIERE</option>
+        </select>
+    </div>
+    <div class="form-step" data-step="2">
+        <th>HIPERTENSIÓN</th>
+        <td>
+            <select name="hiper" id="hiper">
+                <option value="no_refiere" {% if paciente[18] == "no_refiere" %} selected {% endif %}>NO REFIERE</option>
+                <option value="refiere" {% if paciente[18] =="refiere" %} selected {% endif %}>REFIERE</option>
+            </select>
+    </div>
+    <div class="form-step" data-step="2">
+        <th>ARTRITIS</th>
+        <td>
+            <select name="artr" id="artr">
+                <option value="no_refiere" {% if paciente[19] == "no_refiere" %} selected {% endif %}>NO REFIERE</option>
+                <option value="refiere"{% if paciente[19] == "refiere" %} selected {% endif %}>REFIERE</option>
+            </select>
+        </td>
+    </div>
+    <div class="form-step" data-step="2">
+        <th>ALERGIA</th>
+        <td>
+            <select name="aler" id="aler">
+                <option value="no_refiere" {% if paciente[20] == "no_refiere" %} selected {% endif %}>NO REFIERE</option>
+                <option value="refiere" {% if paciente[20] == "refiere" %} selected {% endif %}>REFIERE</option>
+            </select>
+        </td>
+    </div>
+    <div class="form-step" data-step="2">
+        <th>CATARATA</th>
+        <td>
+            <select name="cata" id="cata">
+                <option value="no_refiere" {% if paciente[21] == "no_refiere" %} selected {% endif %}>NO REFIERE</option>
+                <option value="refiere"{% if paciente[21] == "refiere" %} selected {% endif %} >REFIERE</option>
+            </select>
+        </td>
+    </div>
+    <div class="form-step" data-step="2">
+        <th>GLAUCOMA</th>
+        <td>
+            <select name="glau" id="glau">
+                <option value="no_refiere" {% if paciente[22] == "no_refiere" %} selected {% endif %}>NO REFIERE</option>
+                <option value="refiere" {% if paciente[22] == "refiere" %} selected {% endif %}>REFIERE</option>
+            </select>
+        </td>
+    </div>
+    <div class="form-step" data-step="2">
+        <th>ESTRABISMO</th>
+        <td>
+            <select name="estra" id="estra">
+                <option value="no_refiere" {% if paciente[23] == "no_refiere" %} selected {% endif %}>NO REFIERE</option>
+                <option value="refiere"{% if paciente[23] == "refiere" %} selected {% endif %}>REFIERE</option>
+            </select>
+        </td>
+    </div>
+    <div class="form-step" data-step="2">
+        <th>QUERATOCONO</th>
+        <td>
+            <select name="quera" id="quera">
+                <option value="no_refiere" {% if paciente[24] == "no_refiere" %} selected {% endif %}>NO REFIERE</option>
+                <option value="refiere"{% if paciente[24] == "refiere" %} selected {% endif %}>REFIERE</option>
+            </select>
+        </td>
+    </div>
+    <div class="form-step" data-step="2">
+        <th><label for="otros">OTROS</label></th>
+        <td><input type="text" name="otros" id="otros" value="{{paciente[25]}} " class="form-control"></td>
+    </div> 
+    <caption>Antecedentes Personales</caption>
+    <div class="form-step" data-step="2">
+        <th><label for="diabetes">DIABETES</label></th>
+        <td><input type="text" name="diabetes" id="diabetes" value="{{paciente[26]}}" class="form-control"></td>
+    </div>
+    <div class="form-step" data-step="2">
+        <th><label for="hipertension">HIPERTENSIÓN</label></th>
+        <td><input type="text" name="hipertension" id="hipertension"  value="{{paciente[27]}}" class="form-control"></td>
+    </div>
+    <div class="form-step" data-step="2">
+        <th><label for="artritis">ARTRITIS</label></th>
+        <td><input type="text" name="artritis" id="artritis" value="{{paciente[28]}}" class="form-control"></td>
+    </div>
+    <div class="form-step" data-step="2">
+        <th><label for="alergia">ALERGIA</label></th>
+        <td><input type="text" name="alergia" id="alergia" value="{{paciente[29]}}" class="form-control"></td>
+    </div>
+    <div class="form-step" data-step="2">
+        <th><label for="ulcera">ÚLCERA GÁSTRICA</label></th>
+        <td><input type="text" name="ulcera" id="ulcera" value="{{paciente[30]}}" class="form-control"></td>
+    </div>
+    <div class="form-step" data-step="2">
+        <th><label for="cirugia">CIRUGÍA REFRACTIVA</label></th>
+        <td><input type="text" name="cirugia" id="cirugia"  value="{{paciente[31]}}"class="form-control"></td>
+    </div>
+    <div class="form-step" data-step="2">
+        <th><label for="lentes">LENTES DE CONTACTO</label></th>
+        <td><input type="text" name="lentes" id="lentes" value="{{paciente[32]}}" class="form-control"></td>
+    </div>
+    <div class="form-step" data-step="2">
+        <tr>
+            <th><label for="otros_1">OTROS</label></th>
+            <td><input type="text" name="otros_1" id="otros_1" class="form-control"></td>
+        </tr>
+    </div>
+    <caption>Antecedentes Quirúrgicos</caption>
+    <div>
+            <th><label for="descripcion">Describalo</label></th>
+            <td><input type="text" name="descripcion" value="{{paciente[33]}}" id="descripcion" class="form-control"></td>
+    </div> 
+    <div>
+        <th><label for="paciente_documento">Documento del paciente</label></th>
+        <td><input type="text" name="paciente_documento" value="{{paciente[34]}}" id="paciente_documento" class="form-control"></td>
+</div> 
+    <div class="form-step" data-step="3">
+        <th><label for="mov_consulta">Motivo de Consulta</label></th>
+        <td><input type="text" name="mov_consulta" id="mov_consulta" class="form-control" value="{{paciente[35]}}"></td>
+        <th><label for="ulti_consulta">Ultima Consulta</label></th>
+        <td><input type="text" name="ulti_consulta" id="ulti_consulta" class="form-control" value="{{paciente[36]}}"></td>
+    </div>
+    <caption>RX FINAL (Formulación)</caption>    
+    <div class="form-step" data-step="3">
+        <th><label for="esfera">OJO DERECHO</label></th>
+        
+        
+        <td><input type="text" name="esfera" id="esfera" class="form-control" placeholder="Esfera" value="{{paciente[37]}}"></td>
+        <td><input type="text" name="cilindro" id="cilindro" class="form-control" placeholder="Cilindro" value="{{paciente[38]}}"></td>
+        <td><input type="text" name="eje" id="eje" class="form-control" placeholder="Eje" value="{{paciente[39]}}"></td>
+        <td><input type="text" name="dp" id="dp" class="form-control" placeholder="D.P" value="{{paciente[40]}}"></td>
+        <td><input type="text" name="vl20" id="vl20" class="form-control" placeholder="AV VL20/" value="{{paciente[41]}}"></td>
+        <td><input type="text" name="vp20" id="vp20" class="form-control" placeholder="AV VP20/" value="{{paciente[42]}}"></td>
+        <td><input type="text" name="add_0" id="add_0" class="form-control" placeholder="ADD" value="{{paciente[43]}}"></td>
+    </div>
+    <div class="form-step" data-step="3">
+        <th><label for="ojo_izq">OJO IZQUIERDO</label></th>
+                
+        <td><input type="text" name="esfera_1" id="esfera_1" class="form-control" placeholder="Esfera" value="{{paciente[44]}}"></td>
+        <td><input type="text" name="cilindro_1" id="cilindro_1" class="form-control" placeholder="Cilindro" value="{{paciente[45]}}"></td>
+        <td><input type="text" name="eje_1" id="eje_1" class="form-control" placeholder="Eje" value="{{paciente[46]}}"></td>
+        <td><input type="text" name="dp_1" id="dp_1" class="form-control" placeholder="D.P"value="{{paciente[47]}}"></td>
+        <td><input type="text" name="vl20_1" id="vl20_1" class="form-control" placeholder="AV VL20/" value="{{paciente[48]}}"></td>
+        <td><input type="text" name="vp20_1" id="vp20_1" class="form-control" placeholder="AV VP20/"value="{{paciente[49]}}"></td>
+        <td><input type="text" name="add_1" id="add_1" class="form-control" placeholder="ADD" value="{{paciente[50]}}"></td>
+
+    </div>
+    <caption>Formula Número</caption>
+    <div class="form-step" data-step="3">
+        <th><label for="tipo_lente">Tipo de Lente</label></th>
+        <td><input type="text" name="tipo_lente" id="tipo_lente" class="form-control" placeholder="Tipo de Lente" value="{{paciente[51]}}"></td>
+        <th><label for="montura">Montura</label></th>
+        <td><input type="text" name="montura" id="montura" class="form-control" placeholder="Montura" value="{{paciente[52]}}"></td>
+        <tr>
+            <th><label for="material">Material</label></th>
+            <td><input type="text" name="material" id="material" class="form-control" placeholder="Material" value="{{paciente[53]}}"></td>
+            <th><label for="filtro">Filtro</label></th>
+            <td><input type="text" name="filtro" id="filtro" class="form-control" placeholder="Filtro" value="{{paciente[54]}}"></td>
+            <th><label for="color">Color</label></th>
+            <td><input type="text" name="color" id="color" class="form-control" placeholder="Color" value="{{paciente[55]}}"></td>
+    </div>
+    <div class="form-step" data-step="3">
+        <th><label for="obs">Observación</label></th>
+        <td><input type="text" name="obs" id="obs" class="form-control" placeholder="Observación" value="{{paciente[56]}}"></td>
+    </div>
+
+    <div class="form-step" data-step="4">
+        <th><label for="vision_lejos">VISIÓN LEJANA</label> </th>
+        <td><input type="text" name="vision_lejos" id="vision_lejos" class="form-control" value="{{paciente[57]}}"></td>
+    </div>
+    <div class="form-step" data-step="4">
+        <th><label for="vision_proxima">VISION PRÓXIMA</label></th>
+        <td><input type="text" name="vision_proxima" id="vision_proxima" class="form-control"  value="{{paciente[58]}}"></td>
+    </div>
+    <div class="form-step" data-step="4">
+        <th><label for="ducciones_od">DUCCIONES OD</label></th>
+        <td><input type="text" name="ducciones_od" id="ducciones_od" class="form-control" value="{{paciente[59]}}"></td>
+    </div>
+    <div class="form-step" data-step="4">
+        <th><label for="ducciones_oi">DUCCIONES OI</label></th>
+        <td><input type="text" name="ducciones_oi" id="ducciones_oi" class="form-control"  value="{{paciente[60]}}"></td>
+    </div>
+    <div class="form-step" data-step="4">
+        <th><label for="ppc_od">PPC OD</label></th>
+        <td><input type="text" name="ppc_od" id="ppc_od" class="form-control" value="{{paciente[61]}}"></td>
+    </div>
+    <div class="form-step" data-step="4">
+        <th><label for="ppc_oi">PPC OI</label></th>
+        <td><input type="text" name="ppc_oi" id="ppc_oi" class="form-control" value="{{paciente[62]}}"></td>
+    </div>
+    <caption>OFTALMOSCOPIA</caption>
+    <div class="form-step" data-step="4">
+        <th><label for="ojo_derecho">OJO DERECHO</label></th>
+        <td><input type="text" name="ojo_derecho" id="ojo_derecho" class="form-control" value="{{paciente[63]}}"></td>
+    </div>
+    <div class="form-step" data-step="4">
+        <th><label for="ojo_izquierdo">OJO IZQUIERDO</label></th>
+        <td><input type="text" name="ojo_izquierdo" id="ojo_izquierdo" class="form-control" value="{{paciente[64]}}"></td>
+    </div>
+    <caption>QUERATOMETRIA</caption>
+    <div class="form-step" data-step="4">
+        <th><label for="ojo_dere">OJO DERECHO</label></th>
+        <td><input type="text" name="ojo_dere" id="ojo_dere" class="form-control" value="{{paciente[65]}}"></td>
+    </div>
+    <div class="form-step" data-step="4">
+        <th><label for="ojo_izqui">OJO IZQUIERDO</label></th>
+        <td><input type="text" name="ojo_izqui" id="ojo_izqui" class="form-control" value="{{paciente[66]}}"></td>
+    </div>
+    <caption>REFACTROMETRIA</caption>
+    <div class="form-step" data-step="4">
+        <th><label for="ojo_derch">OJO DERECHO</label></th>
+        <td><input type="text" name="ojo_derch" id="ojo_derch" class="form-control" value="{{paciente[67]}}"></td>
+    </div>
+    <div class="form-step" data-step="4">
+        <th><label for="ojo_izquier">OJO IZQUIERDO</label></th>
+        <td><input type="text" name="ojo_izquier" id="ojo_izquier" class="form-control" value="{{paciente[68]}}"></td>
+    </div>
+    <caption>RETINOSCOPIA</caption>
+    <div class="form-step" data-step="4">
+        <th><label for="esfera">OJO DERECHO</label></th>
+        <td><input type="text" name="esfera" id="esfera" class="form-control" placeholder="Esfera" value="{{paciente[69]}}"></td>
+        <td><input type="text" name="cilindro" id="cilindro" class="form-control" placeholder="Cilindro" value="{{paciente[70]}}"></td>
+        <td><input type="text" name="eje" id="eje" class="form-control" placeholder="Eje" value="{{paciente[72]}}"></td>
+        <td><input type="text" name="dp" id="dp" class="form-control" placeholder="D.P" value="{{paciente[73]}}"></td>
+        <td><input type="text" name="vl20" id="vl20" class="form-control" placeholder="AV VL20/" value="{{paciente[74]}}"></td>
+        <td><input type="text" name="vp20" id="vp20" class="form-control" placeholder="AV VP20/"value="{{paciente[75]}}"></td>
+        <td><input type="text" name="add" id="add" class="form-control" placeholder="ADD" value="{{paciente[76]}}"></td>
+    </div>
+    <div class="form-step" data-step="4">
+        <th><label for="ojo_izq">OJO IZQUIERDO</label></th>
+        <td><input type="text" name="esfera_1" id="esfera_1" class="form-control" placeholder="Esfera" value="{{paciente[77]}}"></td>
+        <td><input type="text" name="cilindro_1" id="cilindro_1" class="form-control" placeholder="Cilindro" value="{{paciente[78]}}"></td>
+        <td><input type="text" name="eje_1" id="eje_1" class="form-control" placeholder="Eje"value="{{paciente[79]}}"></td>
+        <td><input type="text" name="dp_1" id="dp_1" class="form-control" placeholder="D.P" value="{{paciente[80]}}"></td>
+        <td><input type="text" name="vl20_1" id="vl20_1" class="form-control" placeholder="AV VL20/"value="{{paciente[81]}}"></td>
+        <td><input type="text" name="vp20_1" id="vp20_1" class="form-control" placeholder="AV VP20/"value="{{paciente[82]}}"></td>
+        <td><input type="text" name="add_1" id="add_1" class="form-control" placeholder="ADD" value="{{paciente[83]}}"></td>
+    </tr>
+    </div>        
+    
+    <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+</form>
+{% endfor %}
+{% endblock %}
