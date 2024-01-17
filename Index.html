@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<p>
+    ¿Qué desea realizar el día de hoy?
+</p>
+
+<h2>Registrar un Paciente Nuevo</h2>
+<button id="button" class="float-left submit-button">Registrar</button>
+
+<script type="text/javascript">
+    document.getElementById("button").onclick = function(){
+        location.href="/formulario";  
+    }
+</script>
+
+<h2>Consultar los pacientes registrados</h2>
+<button id="mybutton" class="float-left submit-button">Consultar</button>
+
+<script type="text/javascript">
+    document.getElementById("mybutton").onclick = function(){
+        location.href="/consulta";  
+    }
+</script>
+
+
+{% endblock %}
